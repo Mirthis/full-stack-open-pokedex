@@ -39,7 +39,7 @@ jobs:
           healthcheck: 'https://radiant-spire-58483.herokuapp.com/version'
           rollbackonhealthcheckfailed: true
   tag_release:
-    if: ${{ github.event_name == 'push' }} && !contains(github.event.head_commit.message, 'wip')
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
