@@ -29,7 +29,8 @@ jobs:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:5000
-      - if: ${{ github.event_name == 'push' }}
+      - name: deploy to Heroku
+        if: ${{ github.event_name == 'push' }}
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -41,9 +42,35 @@ jobs:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
-      - if: ${{ github.event_name == 'push' }}
-        name: Bump version and push tag
+      - name: checkout repository
+        if: ${{ github.event_name == 'push' }}
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Bump version and push tag
+        if: ${{ github.event_name == 'push' }}
         uses: anothrNick/github-tag-action@1.36.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+jobs:
+  a_test_job:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: gihub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: commits
+        env:
+          COMMITS: ${{ toJson(github.event.commits) }}
+        run: echo "$COMMITS"
+      - name: commit messages
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+        run: echo "$COMMIT_MESSAGES"
+      - name: head commit
+        env:
+          HEAD_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: echo "$HEAD_COMMIT_MESSAGE"
