@@ -1,1 +1,1 @@
-web: npm rupp start-prod
+web: npm run start-prod
