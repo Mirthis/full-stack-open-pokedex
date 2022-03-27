@@ -34,3 +34,4 @@ jobs:
           heroku_email: 'mirthis@gmail.com'
           healthcheck: 'https://radiant-spire-58483.herokuapp.com/version'
           checkstring: '1'
+          rollbackonhealthcheckfailed: true
