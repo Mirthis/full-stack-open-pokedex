@@ -36,7 +36,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'radiant-spire-58483' #Must be unique in Heroku
           heroku_email: 'mirthis@gmail.com'
-          healthcheck: 'https://radiant-spire-58483.herokuapp.com/version'
+          healthcheck: 'https://radiant-spire-58483.herokuapp.com/ping'
           rollbackonhealthcheckfailed: true
   tag_release:
     if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
