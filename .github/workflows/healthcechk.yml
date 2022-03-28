@@ -1,8 +1,7 @@
 name: Regular health check
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron: '30 * * * *'
 jobs:
   backend_ping:
     runs-on: ubuntu-20.04
