@@ -13,3 +13,12 @@ Start by running `npm install` inside the project folder
 `npm run eslint` to run eslint
 `npm run build` to make a production build
 `npm run start-prod` to run your production build
+
+## Deployed app
+
+[Phonebook App merged in single repository and with CI/CD pipeline](https://fso-phonebook-cicd.herokuapp.com/)
+[Pokedex App](https://radiant-spire-58483.herokuapp.com/)
+
+## Repository
+
+[Phonebook merged repository](https://github.com/Mirthis/fso-phonebook-cicd)
