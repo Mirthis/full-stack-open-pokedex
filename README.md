@@ -17,6 +17,7 @@ Start by running `npm install` inside the project folder
 ## Deployed app
 
 [Phonebook App merged in single repository and with CI/CD pipeline](https://fso-phonebook-cicd.herokuapp.com/)
+
 [Pokedex App](https://radiant-spire-58483.herokuapp.com/)
 
 ## Repository
